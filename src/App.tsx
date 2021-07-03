@@ -1,10 +1,17 @@
 import React from 'react';
 
 interface AppProps {
-  message: string;
+  message?: string;
 }
-const App = ({ message }: AppProps) => {
-  return <div>React Starter Kit in TypeScript  {message} </div>;
+const App: React.FunctionComponent<AppProps> = ({ message }) => {
+  return <div>{message}</div>;
 };
+
+App.defaultProps = {
+  message: 'default props',
+  // description: 'this is app component' AppPropsにないとエラー
+}
+// const App: = ({ message }: AppProps)
+// これだとエラーにならない。ランタイム中でないと気づけない
 
 export default App;
