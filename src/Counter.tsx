@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 //type MySetStateAction = number | ((prevState: number) => number);
 //type MyDispatch = (value: MySetStateAction) => void
@@ -17,11 +17,19 @@ const Counter: React.FC<{}> = () => {
     setValue(value - 1);
   }
 
+  const renderTimes = useRef(0);
+  // const renderTimes = useRef<number>(0);
+  useEffect(() => {
+    console.log('useEffect');
+    renderTimes.current = renderTimes.current + 1;
+  });
+
   return (
     <div>
       <div>value: {value}</div>
       <button onClick={increment}>+1</button>
       <button onClick={decrement}>-1</button>
+      <div>This component was re-rendered {renderTimes.current} times</div>
     </div>
   );
 }
